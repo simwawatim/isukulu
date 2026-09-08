@@ -1,0 +1,33 @@
+{% extends "Admin/Base.html" %}
+{% block title %}Dashboard — isukulu{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+  <h1 class="text-2xl font-bold text-ink">Welcome back{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %}</h1>
+  <p class="mt-1 text-gray-500">Here's what's happening at your school today.</p>
+
+  <div class="mt-8 grid sm:grid-cols-3 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Students Enrolled</p>
+      <p class="mt-2 text-3xl font-bold text-ink">—</p>
+      <p class="mt-1 text-xs text-gray-400">Connect the students app to see this.</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Staff Members</p>
+      <p class="mt-2 text-3xl font-bold text-ink">—</p>
+      <p class="mt-1 text-xs text-gray-400">Connect the staff app to see this.</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Fees Collected This Term</p>
+      <p class="mt-2 text-3xl font-bold text-ink">—</p>
+      <p class="mt-1 text-xs text-gray-400">Connect the fees app to see this.</p>
+    </div>
+  </div>
+
+  <div class="mt-10 bg-white rounded-lg border border-gray-200 p-8 text-center">
+    <p class="text-sm text-gray-500">This is a placeholder dashboard — wire up real students, staff and fees apps to replace these cards.</p>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "Base/Base.html" %}
+{% block title %}Welcome to isukulu{% endblock %}
+
+{% block content %}
+<header class="border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-navy text-amber flex items-center justify-center">
+        <svg viewBox="0 0 48 48" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M24 12c-4-3-9-4-14-3v22c5-1 10 0 14 3 4-3 9-4 14-3V9c-5-1-10 0-14 3z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M24 12v22"/>
+        </svg>
+      </span>
+      <span class="font-bold text-lg text-ink">isukulu</span>
+    </div>
+    <nav class="text-sm font-medium text-gray-600 flex items-center gap-6">
+      <a href="{% url 'login' %}" class="hover:text-navy transition-colors">Log in</a>
+      <a href="{% url 'register_company' %}" class="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy/90 transition-colors">Register your school</a>
+    </nav>
+  </div>
+</header>
+
+<section class="relative overflow-hidden bg-navy text-white">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-navyLight/40"></div>
+  <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-navyLight/30 -translate-x-1/3 translate-y-1/3"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 py-24">
+    <p class="text-xs font-semibold uppercase tracking-widest text-amber">School Management</p>
+    <h1 class="mt-6 text-4xl sm:text-6xl font-bold leading-tight max-w-2xl">
+      Every Learner,<br><span class="text-amber">Every Record.</span>
+    </h1>
+    <p class="mt-6 text-white/70 max-w-xl text-lg">
+      One dedicated workspace for every school on isukulu — learners, staff and
+      fees, tracked with confidence.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="{% url 'register_company' %}"
+         class="bg-amber text-navy font-semibold px-6 py-3 rounded-lg hover:bg-amberDark hover:text-white transition-colors">
+        Register your school
+      </a>
+      <a href="{% url 'login' %}"
+         class="border border-white/30 text-white px-6 py-3 rounded-lg hover:bg-white/10 transition-colors">
+        Log in
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-16">
+  <div class="grid sm:grid-cols-3 gap-8">
+    <div>
+      <span class="w-10 h-10 rounded-lg bg-navy/5 text-navy flex items-center justify-center mb-4">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/></svg>
+      </span>
+      <p class="font-semibold text-ink">Role-Based Security</p>
+      <p class="text-sm text-gray-500 mt-1">Every account limited to what it needs.</p>
+    </div>
+    <div>
+      <span class="w-10 h-10 rounded-lg bg-navy/5 text-navy flex items-center justify-center mb-4">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+      </span>
+      <p class="font-semibold text-ink">Real-Time Tracking</p>
+      <p class="text-sm text-gray-500 mt-1">Attendance and fees updated instantly.</p>
+    </div>
+    <div>
+      <span class="w-10 h-10 rounded-lg bg-navy/5 text-navy flex items-center justify-center mb-4">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21V6.75L12 3l8 3.75V21M9 21v-5h6v5M4 21h16M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>
+      </span>
+      <p class="font-semibold text-ink">Multi-School Onboarding</p>
+      <p class="text-sm text-gray-500 mt-1">Each school keeps its own isolated records.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 py-6 text-xs text-gray-400 flex items-center justify-between">
+    <span>&copy; {% now "Y" %} isukulu. All rights reserved.</span>
+    <span>Powered by <span class="font-semibold text-gray-500">iZyane</span></span>
+  </div>
+</footer>
+{% endblock %}
