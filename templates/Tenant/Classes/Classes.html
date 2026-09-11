@@ -1,0 +1,101 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <div class="flex items-center justify-between">
+    <p class="text-gray-500">Every class currently running.</p>
+    <a href="#" class="bg-amber hover:bg-amberDark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">+ Add Class</a>
+  </div>
+
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Classes</p>
+      <p class="mt-2 text-3xl font-bold text-ink">52</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Avg. Class Size</p>
+      <p class="mt-2 text-3xl font-bold text-ink">35</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Full Classes</p>
+      <p class="mt-2 text-3xl font-bold text-ink">9</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Vacant Seats</p>
+      <p class="mt-2 text-3xl font-bold text-ink">64</p>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <p class="text-sm font-medium text-ink">All Classes</p>
+    </div>
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3 font-medium">Class</th>
+          <th class="px-6 py-3 font-medium">Grade</th>
+          <th class="px-6 py-3 font-medium">Class Teacher</th>
+          <th class="px-6 py-3 font-medium">Enrolled</th>
+          <th class="px-6 py-3 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Grade 8A</td>
+          <td class="px-6 py-4 text-gray-500">Grade 8</td>
+          <td class="px-6 py-4 text-gray-500">Mercy Chanda</td>
+          <td class="px-6 py-4 text-gray-500">38 / 40</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Grade 8B</td>
+          <td class="px-6 py-4 text-gray-500">Grade 8</td>
+          <td class="px-6 py-4 text-gray-500">Kelvin Zulu</td>
+          <td class="px-6 py-4 text-gray-500">33 / 40</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Grade 10A</td>
+          <td class="px-6 py-4 text-gray-500">Grade 10</td>
+          <td class="px-6 py-4 text-gray-500">Ruth Sakala</td>
+          <td class="px-6 py-4 text-gray-500">40 / 40</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Grade 4A</td>
+          <td class="px-6 py-4 text-gray-500">Grade 4</td>
+          <td class="px-6 py-4 text-gray-500">Agnes Lungu</td>
+          <td class="px-6 py-4 text-gray-500">29 / 35</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Grade 12A</td>
+          <td class="px-6 py-4 text-gray-500">Grade 12</td>
+          <td class="px-6 py-4 text-gray-500">Davies Mumba</td>
+          <td class="px-6 py-4 text-gray-500">31 / 40</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

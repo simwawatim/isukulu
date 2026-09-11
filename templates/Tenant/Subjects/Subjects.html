@@ -1,0 +1,101 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Subjects{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <div class="flex items-center justify-between">
+    <p class="text-gray-500">Subjects taught across the school.</p>
+    <a href="#" class="bg-amber hover:bg-amberDark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">+ Add Subject</a>
+  </div>
+
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Subjects</p>
+      <p class="mt-2 text-3xl font-bold text-ink">24</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Compulsory</p>
+      <p class="mt-2 text-3xl font-bold text-ink">16</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Elective</p>
+      <p class="mt-2 text-3xl font-bold text-ink">8</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Departments</p>
+      <p class="mt-2 text-3xl font-bold text-ink">8</p>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <p class="text-sm font-medium text-ink">All Subjects</p>
+    </div>
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3 font-medium">Subject</th>
+          <th class="px-6 py-3 font-medium">Code</th>
+          <th class="px-6 py-3 font-medium">Department</th>
+          <th class="px-6 py-3 font-medium">Teachers Assigned</th>
+          <th class="px-6 py-3 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Mathematics</td>
+          <td class="px-6 py-4 text-gray-500">MATH101</td>
+          <td class="px-6 py-4 text-gray-500">Sciences</td>
+          <td class="px-6 py-4 text-gray-500">6</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">English Language</td>
+          <td class="px-6 py-4 text-gray-500">ENG101</td>
+          <td class="px-6 py-4 text-gray-500">Languages</td>
+          <td class="px-6 py-4 text-gray-500">5</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Biology</td>
+          <td class="px-6 py-4 text-gray-500">BIO201</td>
+          <td class="px-6 py-4 text-gray-500">Sciences</td>
+          <td class="px-6 py-4 text-gray-500">3</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Computer Studies</td>
+          <td class="px-6 py-4 text-gray-500">COM301</td>
+          <td class="px-6 py-4 text-gray-500">Technology</td>
+          <td class="px-6 py-4 text-gray-500">2</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Fine Art</td>
+          <td class="px-6 py-4 text-gray-500">ART101</td>
+          <td class="px-6 py-4 text-gray-500">Arts</td>
+          <td class="px-6 py-4 text-gray-500">1</td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

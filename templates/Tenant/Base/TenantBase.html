@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}isukulu{% endblock %}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:      '#173347',
+            navyLight: '#20465F',
+            amber:     '#E8792A',
+            amberDark: '#D06B21',
+            ink:       '#1B2A38',
+            leaf:      '#3F7859',
+            rust:      '#B23A2E',
+          },
+          fontFamily: {
+            sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer base {
+      body { @apply bg-gray-50 text-ink font-sans antialiased; }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen flex bg-gray-50 text-ink font-sans antialiased">
+
+  {% include "Tenant/Base/TenantSideNav.html" %}
+
+  <div class="flex-1 flex flex-col min-w-0">
+
+    {% include "Tenant/Base/TenantHeader.html" %}
+
+    <main class="flex-1">
+      {% block content %}{% endblock %}
+    </main>
+
+    {% comment %} <footer class="border-t border-gray-200">
+      <div class="px-8 py-4 text-xs text-gray-400 flex items-center justify-between">
+        <span>Powered by <span class="font-semibold text-gray-500">iZyane</span></span>
+      </div>
+    </footer> {% endcomment %}
+
+  </div>
+
+</body>
+</html>

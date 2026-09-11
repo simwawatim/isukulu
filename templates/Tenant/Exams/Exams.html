@@ -1,0 +1,101 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Exams{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <div class="flex items-center justify-between">
+    <p class="text-gray-500">Exams scheduled and completed this term.</p>
+    <a href="#" class="bg-amber hover:bg-amberDark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">+ Schedule Exam</a>
+  </div>
+
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Upcoming Exams</p>
+      <p class="mt-2 text-3xl font-bold text-ink">6</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Completed This Term</p>
+      <p class="mt-2 text-3xl font-bold text-ink">11</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Avg. Pass Rate</p>
+      <p class="mt-2 text-3xl font-bold text-ink">78%</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Pending Results</p>
+      <p class="mt-2 text-3xl font-bold text-ink">3</p>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <p class="text-sm font-medium text-ink">All Exams</p>
+    </div>
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3 font-medium">Exam</th>
+          <th class="px-6 py-3 font-medium">Grade</th>
+          <th class="px-6 py-3 font-medium">Date</th>
+          <th class="px-6 py-3 font-medium">Status</th>
+          <th class="px-6 py-3 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Mid-Term Mathematics</td>
+          <td class="px-6 py-4 text-gray-500">Grade 8</td>
+          <td class="px-6 py-4 text-gray-500">Sep 15, 2026</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Upcoming</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Mock English Paper 1</td>
+          <td class="px-6 py-4 text-gray-500">Grade 12</td>
+          <td class="px-6 py-4 text-gray-500">Sep 10, 2026</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Grading</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Biology Practical</td>
+          <td class="px-6 py-4 text-gray-500">Grade 10</td>
+          <td class="px-6 py-4 text-gray-500">Sep 3, 2026</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Results Out</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Term 3 Finals — Chichewa</td>
+          <td class="px-6 py-4 text-gray-500">Grade 7</td>
+          <td class="px-6 py-4 text-gray-500">Sep 28, 2026</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Upcoming</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Computer Studies Test</td>
+          <td class="px-6 py-4 text-gray-500">Grade 9</td>
+          <td class="px-6 py-4 text-gray-500">Aug 29, 2026</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Results Out</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

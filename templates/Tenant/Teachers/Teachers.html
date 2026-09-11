@@ -1,0 +1,101 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Teachers{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <div class="flex items-center justify-between">
+    <p class="text-gray-500">All teaching staff at your school.</p>
+    <a href="#" class="bg-amber hover:bg-amberDark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">+ Add Teacher</a>
+  </div>
+
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Teachers</p>
+      <p class="mt-2 text-3xl font-bold text-ink">96</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Active</p>
+      <p class="mt-2 text-3xl font-bold text-ink">89</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">On Leave</p>
+      <p class="mt-2 text-3xl font-bold text-ink">7</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Departments</p>
+      <p class="mt-2 text-3xl font-bold text-ink">8</p>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <p class="text-sm font-medium text-ink">All Teachers</p>
+    </div>
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3 font-medium">Name</th>
+          <th class="px-6 py-3 font-medium">Employee ID</th>
+          <th class="px-6 py-3 font-medium">Department</th>
+          <th class="px-6 py-3 font-medium">Status</th>
+          <th class="px-6 py-3 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Mercy Chanda</td>
+          <td class="px-6 py-4 text-gray-500">EMP-0142</td>
+          <td class="px-6 py-4 text-gray-500">Mathematics</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Active</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Kelvin Zulu</td>
+          <td class="px-6 py-4 text-gray-500">EMP-0098</td>
+          <td class="px-6 py-4 text-gray-500">English</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Active</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Ruth Sakala</td>
+          <td class="px-6 py-4 text-gray-500">EMP-0211</td>
+          <td class="px-6 py-4 text-gray-500">Biology</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">On Leave</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Davies Mumba</td>
+          <td class="px-6 py-4 text-gray-500">EMP-0075</td>
+          <td class="px-6 py-4 text-gray-500">Physical Education</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Active</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Agnes Lungu</td>
+          <td class="px-6 py-4 text-gray-500">EMP-0156</td>
+          <td class="px-6 py-4 text-gray-500">Chichewa</td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Active</span></td>
+          <td class="px-6 py-4 text-right space-x-3">
+            <a href="#" class="text-amber hover:underline">View</a>
+            <a href="#" class="text-gray-500 hover:underline">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}

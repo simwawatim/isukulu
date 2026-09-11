@@ -1,0 +1,176 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <p class="text-gray-500">Overview of your school right now.</p>
+
+  <!-- Stat cards (mock) -->
+  <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Students</p>
+      <p class="mt-2 text-3xl font-bold text-ink">1,842</p>
+      <p class="mt-1 text-xs text-leaf">+40 this term</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Teachers</p>
+      <p class="mt-2 text-3xl font-bold text-ink">96</p>
+      <p class="mt-1 text-xs text-gray-400">Across 8 departments</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Fees Collected — Term 3</p>
+      <p class="mt-2 text-3xl font-bold text-ink">K482,300</p>
+      <p class="mt-1 text-xs text-amberDark">K61,200 outstanding</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Attendance Today</p>
+      <p class="mt-2 text-3xl font-bold text-ink">94%</p>
+      <p class="mt-1 text-xs text-gray-400">1,732 of 1,842 present</p>
+    </div>
+  </div>
+
+  <!-- Charts (mock) -->
+  <div class="mt-6 grid lg:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500 mb-4">Enrollment — last 6 months</p>
+      <canvas id="enrollmentChart" height="180"></canvas>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500 mb-4">Attendance this week</p>
+      <canvas id="attendanceChart" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- Tables (mock) -->
+  <div class="mt-6 grid lg:grid-cols-2 gap-6">
+
+    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-100">
+        <p class="text-sm font-medium text-ink">Recent Fee Payments</p>
+      </div>
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+          <tr>
+            <th class="px-6 py-3 font-medium">Student</th>
+            <th class="px-6 py-3 font-medium">Grade</th>
+            <th class="px-6 py-3 font-medium">Amount</th>
+            <th class="px-6 py-3 font-medium">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Chulu Mwansa</td>
+            <td class="px-6 py-4 text-gray-500">Grade 7</td>
+            <td class="px-6 py-4 text-gray-500">K1,200</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Bwalya Tembo</td>
+            <td class="px-6 py-4 text-gray-500">Grade 10</td>
+            <td class="px-6 py-4 text-gray-500">K1,500</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Natasha Phiri</td>
+            <td class="px-6 py-4 text-gray-500">Grade 4</td>
+            <td class="px-6 py-4 text-gray-500">K900</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Pending</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Joseph Banda</td>
+            <td class="px-6 py-4 text-gray-500">Grade 12</td>
+            <td class="px-6 py-4 text-gray-500">K1,800</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Grace Mulenga</td>
+            <td class="px-6 py-4 text-gray-500">Grade 8</td>
+            <td class="px-6 py-4 text-gray-500">K1,100</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rust/10 text-rust">Overdue</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-100">
+        <p class="text-sm font-medium text-ink">Upcoming Events</p>
+      </div>
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+          <tr>
+            <th class="px-6 py-3 font-medium">Event</th>
+            <th class="px-6 py-3 font-medium">Date</th>
+            <th class="px-6 py-3 font-medium">Applies To</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Mid-Term Exams</td>
+            <td class="px-6 py-4 text-gray-500">Sep 15, 2026</td>
+            <td class="px-6 py-4 text-gray-500">Grades 8–12</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Parents' Meeting</td>
+            <td class="px-6 py-4 text-gray-500">Sep 18, 2026</td>
+            <td class="px-6 py-4 text-gray-500">All Grades</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Sports Day</td>
+            <td class="px-6 py-4 text-gray-500">Sep 25, 2026</td>
+            <td class="px-6 py-4 text-gray-500">All Grades</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-medium text-ink">Term 3 Fee Deadline</td>
+            <td class="px-6 py-4 text-gray-500">Sep 30, 2026</td>
+            <td class="px-6 py-4 text-gray-500">All Grades</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+  new Chart(document.getElementById('enrollmentChart'), {
+    type: 'line',
+    data: {
+      labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      datasets: [{
+        label: 'Total students',
+        data: [1620, 1670, 1705, 1758, 1802, 1842],
+        borderColor: '#d97706',
+        backgroundColor: 'rgba(217, 119, 6, 0.1)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 3,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: false } }
+    }
+  });
+
+  new Chart(document.getElementById('attendanceChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      datasets: [{
+        label: 'Attendance %',
+        data: [96, 94, 91, 95, 89],
+        backgroundColor: '#173347',
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, max: 100 } }
+    }
+  });
+</script>
+{% endblock %}

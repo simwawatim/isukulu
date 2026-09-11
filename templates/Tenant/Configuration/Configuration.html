@@ -1,0 +1,27 @@
+{% extends "Tenant/Base/TenantBase.html" %}
+{% block title %}Configuration{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+  <p class="text-gray-500">School-wide settings.</p>
+
+  <div class="mt-8 grid sm:grid-cols-2 gap-6">
+    <a href="#" class="bg-white rounded-lg border border-gray-200 p-6 hover:border-navy transition-colors">
+      <p class="font-medium text-ink">School Profile</p>
+      <p class="mt-1 text-sm text-gray-500">Name, address, logo, and contact details.</p>
+    </a>
+    <a href="#" class="bg-white rounded-lg border border-gray-200 p-6 hover:border-navy transition-colors">
+      <p class="font-medium text-ink">Academic Year</p>
+      <p class="mt-1 text-sm text-gray-500">Terms, term dates, and grading periods.</p>
+    </a>
+    <a href="#" class="bg-white rounded-lg border border-gray-200 p-6 hover:border-navy transition-colors">
+      <p class="font-medium text-ink">Fee Structure</p>
+      <p class="mt-1 text-sm text-gray-500">Fees per grade and payment deadlines.</p>
+    </a>
+    <a href="#" class="bg-white rounded-lg border border-gray-200 p-6 hover:border-navy transition-colors">
+      <p class="font-medium text-ink">Roles &amp; Permissions</p>
+      <p class="mt-1 text-sm text-gray-500">Who can access which parts of isukulu.</p>
+    </a>
+  </div>
+</div>
+{% endblock %}
