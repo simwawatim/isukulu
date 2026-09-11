@@ -1,0 +1,232 @@
+{% extends "Admin/AdminBase.html" %}
+{% block title %}Tiers — isukulu Admin{% endblock %}
+
+{% block content %}
+<div class="w-full px-8 py-10">
+
+  <p class="text-gray-500">Subscription tiers available to schools on isukulu.</p>
+
+  <div class="mt-8 grid sm:grid-cols-3 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Total Tiers</p>
+      <p class="mt-2 text-3xl font-bold text-ink">{{ total_tiers }}</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Active</p>
+      <p class="mt-2 text-3xl font-bold text-leaf">{{ active_tiers_count }}</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Inactive</p>
+      <p class="mt-2 text-3xl font-bold text-gray-400">{{ inactive_tiers_count }}</p>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="mt-10 flex items-center justify-between gap-4">
+    <div class="relative w-72">
+      <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4-4"/></svg>
+      </span>
+      <input type="text" id="tier-search" placeholder="Search by tier name..."
+             class="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-2 text-sm text-ink placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber/30 focus:border-amber transition">
+    </div>
+
+    <button type="button" onclick="openModal('add-tier-modal')"
+            class="flex items-center gap-2 bg-amber hover:bg-amber/90 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+      Add Tier
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="mt-4 bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3 font-medium">ID</th>
+          <th class="px-6 py-3 font-medium">Tier</th>
+          <th class="px-6 py-3 font-medium">Price / mo</th>
+          <th class="px-6 py-3 font-medium">Student Limit</th>
+          <th class="px-6 py-3 font-medium">Status</th>
+          <th class="px-6 py-3 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tiers-table-body" class="divide-y divide-gray-100">
+        {% for tier in tiers %}
+        <tr data-row data-name="{{ tier.name }}" class="hover:bg-gray-50/60 transition-colors">
+          <td class="px-6 py-4 text-gray-400">#{{ tier.id }}</td>
+          <td class="px-6 py-4 font-medium text-ink">{{ tier.name }}</td>
+          <td class="px-6 py-4 text-gray-500">K{{ tier.price }}</td>
+          <td class="px-6 py-4 text-gray-500">{{ tier.student_limit|default:"Unlimited" }}</td>
+          <td class="px-6 py-4">
+            {% if tier.is_active %}
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-leaf/10 text-leaf">
+                <span class="w-1.5 h-1.5 rounded-full bg-leaf"></span> Active
+              </span>
+            {% else %}
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Inactive
+              </span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex items-center justify-end gap-3">
+              <button type="button" title="Edit"
+                      onclick="openEditModal(this)"
+                      data-action="{% url 'edit_tier' tier.id %}"
+                      data-name="{{ tier.name }}"
+                      data-price="{{ tier.price }}"
+                      data-student-limit="{{ tier.student_limit|default_if_none:'' }}"
+                      data-description="{{ tier.description|default_if_none:'' }}"
+                      data-active="{{ tier.is_active|yesno:'true,false' }}"
+                      class="text-gray-400 hover:text-amber transition-colors">
+                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </button>
+              <button type="button" title="Delete"
+                      onclick="openDeleteModal(this)"
+                      data-action="{% url 'delete_tier' tier.id %}"
+                      data-name="{{ tier.name }}"
+                      class="text-gray-400 hover:text-rust transition-colors">
+                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M9 7V4.5A1.5 1.5 0 0110.5 3h3A1.5 1.5 0 0115 4.5V7m2 0v13a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 017 20V7h10z"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="px-6 py-10 text-center text-gray-400">No tiers configured yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Add Tier Modal -->
+<div id="add-tier-modal" class="hidden fixed inset-0 bg-black/40 items-center justify-center z-50 px-4" onclick="if(event.target===this) closeModal('add-tier-modal')">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-md" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 border-l-4 border-l-amber rounded-t-lg">
+      <h3 class="font-semibold text-ink">Add New Tier</h3>
+      <button type="button" onclick="closeModal('add-tier-modal')" class="text-gray-400 hover:text-gray-600">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <form id="add-tier-form" method="post" action="{% url 'add_tier' %}" class="px-6 py-5 space-y-4">
+      {% csrf_token %}
+      {% for field in add_tier_form %}
+        {% if field.field.widget.input_type == "checkbox" %}
+          <label class="flex items-center gap-2 text-sm font-medium text-ink">
+            {{ field }} {{ field.label }}
+          </label>
+        {% else %}
+          <div>
+            <label class="block text-sm font-medium text-ink mb-1.5">{{ field.label }}</label>
+            {{ field }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal('add-tier-modal')"
+                class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 transition">Cancel</button>
+        <button type="submit" class="px-4 py-2 rounded-lg bg-ink text-white text-sm font-medium hover:bg-ink/90 transition">Add Tier</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Tier Modal -->
+<div id="edit-tier-modal" class="hidden fixed inset-0 bg-black/40 items-center justify-center z-50 px-4" onclick="if(event.target===this) closeModal('edit-tier-modal')">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-md" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 border-l-4 border-l-amber rounded-t-lg">
+      <h3 id="edit-tier-title" class="font-semibold text-ink">Edit Tier</h3>
+      <button type="button" onclick="closeModal('edit-tier-modal')" class="text-gray-400 hover:text-gray-600">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <form id="edit-tier-form" method="post" action="" class="px-6 py-5 space-y-4">
+      {% csrf_token %}
+      {% for field in edit_tier_form %}
+        {% if field.field.widget.input_type == "checkbox" %}
+          <label class="flex items-center gap-2 text-sm font-medium text-ink">
+            {{ field }} {{ field.label }}
+          </label>
+        {% else %}
+          <div>
+            <label class="block text-sm font-medium text-ink mb-1.5">{{ field.label }}</label>
+            {{ field }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal('edit-tier-modal')"
+                class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 transition">Cancel</button>
+        <button type="submit" class="px-4 py-2 rounded-lg bg-ink text-white text-sm font-medium hover:bg-ink/90 transition">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="delete-tier-modal" class="hidden fixed inset-0 bg-black/40 items-center justify-center z-50 px-4" onclick="if(event.target===this) closeModal('delete-tier-modal')">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-sm" onclick="event.stopPropagation()">
+    <div class="px-6 py-4 border-b border-gray-100 border-l-4 border-l-rust rounded-t-lg">
+      <h3 class="font-semibold text-ink">Delete Tier</h3>
+    </div>
+    <div class="px-6 py-5">
+      <p class="text-sm text-gray-600">
+        Are you sure you want to delete <span id="delete-tier-name" class="font-medium text-ink"></span>? This can't be undone.
+      </p>
+      <form id="delete-tier-form" method="post" action="" class="flex justify-end gap-3 pt-6">
+        {% csrf_token %}
+        <button type="button" onclick="closeModal('delete-tier-modal')"
+                class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 transition">Cancel</button>
+        <button type="submit" class="px-4 py-2 rounded-lg bg-rust text-white text-sm font-medium hover:bg-rust/90 transition">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('hidden');
+    el.classList.add('flex');
+  }
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    el.classList.add('hidden');
+    el.classList.remove('flex');
+  }
+
+  function openEditModal(btn) {
+    document.getElementById('edit-tier-form').action = btn.dataset.action;
+    document.getElementById('id_edit-name').value = btn.dataset.name;
+    document.getElementById('id_edit-price').value = btn.dataset.price;
+    document.getElementById('id_edit-student_limit').value = btn.dataset.studentLimit;
+    document.getElementById('id_edit-description').value = btn.dataset.description;
+    document.getElementById('id_edit-is_active').checked = btn.dataset.active === 'true';
+    document.getElementById('edit-tier-title').textContent = 'Edit "' + btn.dataset.name + '"';
+    openModal('edit-tier-modal');
+  }
+
+  function openDeleteModal(btn) {
+    document.getElementById('delete-tier-form').action = btn.dataset.action;
+    document.getElementById('delete-tier-name').textContent = btn.dataset.name;
+    openModal('delete-tier-modal');
+  }
+
+  document.getElementById('tier-search').addEventListener('input', function (e) {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('#tiers-table-body tr[data-row]').forEach(function (row) {
+      row.style.display = row.dataset.name.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      ['add-tier-modal', 'edit-tier-modal', 'delete-tier-modal'].forEach(closeModal);
+    }
+  });
+</script>
+{% endblock %}

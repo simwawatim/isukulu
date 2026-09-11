@@ -49,9 +49,7 @@ SHARED_APPS = (
 TENANT_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.auth',
-    # add your per-school apps here, e.g.:
-    # 'students',
-    # 'academics',
+    'core',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [

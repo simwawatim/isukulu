@@ -2,21 +2,39 @@
 {% block title %}Schools — isukulu Admin{% endblock %}
 
 {% block content %}
-<div class="max-w-6xl mx-auto px-8 py-10">
+<div class="w-full px-8 py-10">
 
   <p class="text-gray-500">Every school registered on isukulu.</p>
 
-  <div class="mt-8 grid sm:grid-cols-2 gap-6 max-w-md">
+  <!-- Stat cards (mock) -->
+  <div class="mt-8 grid sm:grid-cols-3 gap-6">
     <div class="bg-white rounded-lg border border-gray-200 p-6">
       <p class="text-sm text-gray-500">Total Schools</p>
-      <p class="mt-2 text-3xl font-bold text-ink">{{ total_schools }}</p>
+      <p class="mt-2 text-3xl font-bold text-ink">128</p>
     </div>
     <div class="bg-white rounded-lg border border-gray-200 p-6">
       <p class="text-sm text-gray-500">On Trial</p>
-      <p class="mt-2 text-3xl font-bold text-ink">{{ trial_count }}</p>
+      <p class="mt-2 text-3xl font-bold text-ink">34</p>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500">Paid</p>
+      <p class="mt-2 text-3xl font-bold text-ink">94</p>
     </div>
   </div>
 
+  <!-- Graphs (mock) -->
+  <div class="mt-6 grid lg:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500 mb-4">Schools registered — last 6 months</p>
+      <canvas id="growthChart" height="180"></canvas>
+    </div>
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <p class="text-sm text-gray-500 mb-4">Trial vs Paid</p>
+      <canvas id="trialPaidChart" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- Table (mock rows, no view context needed) -->
   <div class="mt-10 bg-white rounded-lg border border-gray-200 overflow-hidden">
     <table class="w-full text-sm text-left">
       <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
@@ -28,34 +46,78 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-100">
-        {% for tenant in tenants %}
         <tr>
-          <td class="px-6 py-4 font-medium text-ink">{{ tenant.name }}</td>
-          <td class="px-6 py-4 text-gray-500">
-            {% if tenant.domain %}
-              <a href="http://{{ tenant.domain }}{% if tenant_port %}:{{ tenant_port }}{% endif %}/"
-                 class="text-amber hover:underline">{{ tenant.domain }}</a>
-            {% else %}
-              <span class="text-gray-400">No domain</span>
-            {% endif %}
-          </td>
-          <td class="px-6 py-4">
-            {% if tenant.on_trial %}
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Trial</span>
-            {% else %}
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span>
-            {% endif %}
-          </td>
-          <td class="px-6 py-4 text-gray-500">{{ tenant.paid_until }}</td>
+          <td class="px-6 py-4 font-medium text-ink">Lusaka Trust Academy</td>
+          <td class="px-6 py-4 text-gray-500"><a href="#" class="text-amber hover:underline">lusakatrust.isukulu.local</a></td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          <td class="px-6 py-4 text-gray-500">Oct 26, 2026</td>
         </tr>
-        {% empty %}
         <tr>
-          <td colspan="4" class="px-6 py-10 text-center text-gray-400">No schools registered yet.</td>
+          <td class="px-6 py-4 font-medium text-ink">Kabulonga Girls Secondary</td>
+          <td class="px-6 py-4 text-gray-500"><a href="#" class="text-amber hover:underline">kabulonga.isukulu.local</a></td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Trial</span></td>
+          <td class="px-6 py-4 text-gray-500">Sep 21, 2026</td>
         </tr>
-        {% endfor %}
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Ndola International School</td>
+          <td class="px-6 py-4 text-gray-500"><a href="#" class="text-amber hover:underline">ndolaint.isukulu.local</a></td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          <td class="px-6 py-4 text-gray-500">Jan 12, 2027</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Chipata Community School</td>
+          <td class="px-6 py-4"><span class="text-gray-400">No domain</span></td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber/10 text-amberDark">Trial</span></td>
+          <td class="px-6 py-4 text-gray-500">—</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium text-ink">Livingstone Bridge College</td>
+          <td class="px-6 py-4 text-gray-500"><a href="#" class="text-amber hover:underline">livingstonebridge.isukulu.local</a></td>
+          <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-leaf/10 text-leaf">Paid</span></td>
+          <td class="px-6 py-4 text-gray-500">Nov 3, 2026</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+  new Chart(document.getElementById('growthChart'), {
+    type: 'line',
+    data: {
+      labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      datasets: [{
+        label: 'Total schools',
+        data: [72, 84, 95, 107, 118, 128],
+        borderColor: '#d97706',
+        backgroundColor: 'rgba(217, 119, 6, 0.1)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 3,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: false } }
+    }
+  });
+
+  new Chart(document.getElementById('trialPaidChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Paid', 'Trial'],
+      datasets: [{
+        data: [94, 34],
+        backgroundColor: ['#16a34a', '#d97706'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom' } },
+      cutout: '65%'
+    }
+  });
+</script>
 {% endblock %}
