@@ -1,46 +1,59 @@
-from django.shortcuts import render, redirect
+from core.Utils.Decorators.TenantMember import tenant_member_required
+from django.shortcuts import render
 
+
+
+@tenant_member_required
 def Dashboard(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Dashboard/Dashboard.html")
 
 
+@tenant_member_required
 def Teachers(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Teachers/Teachers.html")
 
+
+@tenant_member_required
 def Students(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Students/Students.html")
 
+
+@tenant_member_required
 def Classes(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Classes/Classes.html")
 
 
+@tenant_member_required
 def Subjects(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Subjects/Subjects.html")
 
 
+
+@tenant_member_required
 def Exams(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Exams/Exams.html")
 
 
+@tenant_member_required
 def Calandar(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Calendar/Calendar.html")
 
 
+@tenant_member_required
 def Configuration(request):
-    if not request.user.is_authenticated:
-        return redirect("login")
     return render(request, "Tenant/Configuration/Configuration.html")
+
+
+@tenant_member_required
+def Attendance(request):
+    return render(request, "Tenant/Attendance/Attendance.html")
+
+
+@tenant_member_required
+def Results(request):
+    return render(request, "Tenant/Results/Results.html")
+
+
+@tenant_member_required
+def Timetable(request):
+    return render(request, "Tenant/Timetable/Timetable.html")

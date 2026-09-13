@@ -30,12 +30,17 @@ def login_view(request):
         email = request.POST.get("email", "")
         password = request.POST.get("password", "")
         user = authenticate(request, username=email, password=password)
+
         if user is not None:
             auth_login(request, user)
+            request.session["tenant_schema"] = connection.schema_name
+        
             if connection.schema_name == "public":
                 return redirect("admin_dashboard")
+
             return redirect("dashboard")
         messages.error(request, "Invalid email or password.")
+
     return render(request, "Customers/Login.html")
 
 def logout_view(request):
